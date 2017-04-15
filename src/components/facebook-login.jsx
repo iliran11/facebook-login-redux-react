@@ -9,8 +9,18 @@ class FacebookReduxLogin extends Component {
   componentDidMount() {
     this.props.initLoginStatus(FacebookReduxLogin.loadSdk)
   }
+  getButtonText() {
+    switch (this.props.isConnected) {
+      case true:
+        return 'logout';
+      case false:
+        return 'log in';
+      default:
+        return 'loading ...';
+    }
+  }
   render() {
-    return <button onClick={FacebookReduxLogin.performLogin}>login</button>;
+    return <button>{this.getButtonText()}</button>;
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -19,4 +29,9 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(FacebookReduxLogin)
+function mapStateToProps(state) {
+  return { isConnected: state.facebookLogin.isConnected };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(FacebookReduxLogin);
