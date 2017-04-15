@@ -1,8 +1,11 @@
 /* global someFunction FB,window,document,fjs */
 
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getLoginStatus } from '../actions/index.js';
 
-export default class FacebookReduxLogin extends Component {
+class FacebookReduxLogin extends Component {
   static loadSdk() {
     return new Promise(resolve => {
       window.fbAsyncInit = function () {
@@ -30,11 +33,26 @@ export default class FacebookReduxLogin extends Component {
       });
     });
   }
-  render() {
+  static performLogin() {
+  }
+  componentDidMount() {
     FacebookReduxLogin.loadSdk()
       .then(res => console.log(res, window.FB))
       .then(() => FacebookReduxLogin.getLoginStatus())
-      .then(res => console.log('status connection', res));
-    return <div>hello</div>;
+      .then(res => {
+        console.log('status connection', res);
+        this.props.getLoginStatus(res.status);
+      });
+  }
+  render() {
+    return <button onClick={FacebookReduxLogin.performLogin}>login</button>;
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getLoginStatus
+  }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(FacebookReduxLogin)
