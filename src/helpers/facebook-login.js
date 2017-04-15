@@ -26,3 +26,14 @@ export function getLoginStatus() {
     });
   });
 }
+
+export function fbLogin() {
+  return new Promise(resolve => {
+    window.FB.login(response => resolve(response));
+  });
+}
+export function fbLogout() {
+  return new Promise(resolve => {
+    window.FB.logout(response => resolve(response));
+  });
+}

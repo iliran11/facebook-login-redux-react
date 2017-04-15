@@ -3,9 +3,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { initLoginStatus } from '../actions/index.js';
+import { initLoginStatus, logIn, logOut } from '../actions/thunks.js';
 
 class FacebookReduxLogin extends Component {
+  constructor(props) {
+    super(props);
+    this.buttonClicked = this.buttonClicked.bind(this);
+  }
   componentDidMount() {
     this.props.initLoginStatus(FacebookReduxLogin.loadSdk)
   }
@@ -19,13 +23,18 @@ class FacebookReduxLogin extends Component {
         return 'loading ...';
     }
   }
+  buttonClicked() {
+    this.props.logIn();
+  }
   render() {
-    return <button>{this.getButtonText()}</button>;
+    return <button onClick={this.buttonClicked}>{this.getButtonText()}</button>;
   }
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    initLoginStatus
+    initLoginStatus,
+    logOut,
+    logIn
   }, dispatch);
 }
 
