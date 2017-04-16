@@ -9,6 +9,7 @@ class FacebookReduxLogin extends Component {
   constructor(props) {
     super(props);
     this.buttonClicked = this.buttonClicked.bind(this);
+    this.showSpinner = this.showSpinner.bind(this);
   }
   componentDidMount() {
     this.props.initLoginStatus(FacebookReduxLogin.loadSdk)
@@ -20,14 +21,27 @@ class FacebookReduxLogin extends Component {
       case false:
         return 'log in';
       default:
-        return 'loading ...';
+        return 'log in';
     }
   }
   buttonClicked() {
-    this.props.logIn();
+    if (this.props.isConnected) {
+      this.props.logOut();
+    } else {
+      this.props.logIn();
+    }
+  }
+  showSpinner() {
+    if (this.props.isWorking) {
+      return <div>Loading .....</div>
+    }
+    return null;
   }
   render() {
-    return <button onClick={this.buttonClicked}>{this.getButtonText()}</button>;
+    return <button onClick={this.buttonClicked}>
+      {this.getButtonText()}
+      {this.showSpinner()}
+    </button>;
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -39,7 +53,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { isConnected: state.facebookLogin.isConnected };
+  return { isConnected: state.facebookLogin.isConnected, isWorking: state.facebookLogin.isWorking };
 }
 
 

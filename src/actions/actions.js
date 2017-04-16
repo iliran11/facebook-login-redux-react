@@ -1,6 +1,11 @@
-export function updateFacebookLoginStatus(status) {
-  return {
-    type: 'getFacebookStatus',
+export function getLoginResponse(status) {
+  return ({
+    type: 'loginResponse',
     payload: status
-  }
+  });
+}
+export function loginFetching() {
+  return {
+    type: 'fetching'
+  };
 }

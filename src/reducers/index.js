@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import facebookLogin from './facebook-login.js';
+import facebookLogin from './login-reducer.js';
 
 const rootReducer = combineReducers({
   facebookLogin
