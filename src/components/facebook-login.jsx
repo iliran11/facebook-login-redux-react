@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { initLoginStatus, logIn, logOut } from '../actions/thunks.js';
+import Spinner from './spinner.jsx';
 
 class FacebookReduxLogin extends Component {
   constructor(props) {
@@ -32,16 +33,22 @@ class FacebookReduxLogin extends Component {
     }
   }
   showSpinner() {
+    let visibility;
     if (this.props.isWorking) {
-      return <div>Loading .....</div>
+      visibility = 'visible';
+    } else {
+      visibility = 'hidden';
     }
-    return null;
+    return <Spinner visibility={visibility} />;
   }
   render() {
-    return <button onClick={this.buttonClicked}>
-      {this.getButtonText()}
-      {this.showSpinner()}
-    </button>;
+    return (
+      <button style={{ display: 'flex', justifyContent: 'center', width: '100%', height: 50, position: 'relative' }} onClick={this.buttonClicked}>
+        <div style={{ marginRight: 'auto' }} />
+        <div>{this.getButtonText()}</div>
+        {this.showSpinner()}
+      </button>
+    );
   }
 }
 function mapDispatchToProps(dispatch) {
