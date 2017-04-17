@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import style from '../style/style.scss';
 
 import App from './components/app';
 import reducers from './reducers';
 
+console.log(style);
 const store = createStore(
   reducers,
   compose(

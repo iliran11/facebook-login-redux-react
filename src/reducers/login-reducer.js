@@ -1,5 +1,4 @@
 export default function (state = { isConnected: false, isWorking: false }, action) {
-  console.log('reducer', action);
   switch (action.type) {
     case 'loginResponse':
       if (action.payload === 'connected') {
