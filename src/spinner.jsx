@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import animation from '../../style/spinner.scss'
 
 export default class Spinner extends Component {
   render() {

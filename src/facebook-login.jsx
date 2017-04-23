@@ -3,12 +3,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { initLoginStatus, logIn, logOut } from '../actions/thunks.js';
+import { initLoginStatus, logIn, logOut } from './actions/thunks.js';
 import Spinner from './spinner.jsx';
 
 class FacebookReduxLogin extends Component {
   constructor(props) {
     super(props);
+    debugger;
     this.buttonClicked = this.buttonClicked.bind(this);
     this.showSpinner = this.showSpinner.bind(this);
   }

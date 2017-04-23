@@ -1,0 +1,1 @@
+module.exports = require('./src/facebook-login.jsx');

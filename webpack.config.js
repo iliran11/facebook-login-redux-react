@@ -1,33 +1,32 @@
 var path = require('path');
+var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname)
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader'
+    entry: {
+        index: [
+            './index.js'
+        ]
+    },
+    output: {
+        path: path.join(__dirname, 'build'),
+        publicPath: '/',
+        filename: '[name].js',
+        library: 'ReactSparklines',
+        libraryTarget: 'umd'
+    },
+    externals: {
+        react: {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
         }
-      },
-      {
-        test: /\.scss$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader"
-        }, {
-          loader: "sass-loader",
-          options: {
-            includePaths: ["absolute/path/a", "absolute/path/b"]
-          }
+    },
+    module: {
+        loaders: [{
+            test: /\.jsx?$/,
+            exclude: /(node_modules)/,
+            loader: 'babel-loader'
         }]
-      }]
-  }
-
+    },
 };
