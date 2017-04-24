@@ -106,36 +106,20 @@ const defaults = {
   },
   styles: {
     loginBtn: {
-      display: 'flex',
-      boxSizing: 'border-box',
       position: 'relative',
-      margin: '0.2em',
       padding: '0 15px 0px 46px',
       border: 'none',
-      textAlign: 'left',
       lineHeight: '34px',
-      whiteSpace: 'nowrap',
-      borderRadius: '0.2em',
       fontSize: '16px',
       color: '#FFF',
-      backgroundColor: '#4C69BA',
       backgroundImage: 'linear-gradient(#4C69BA, #3B55A0)',
-      textShadow: '0 -1px 0 #354C8C',
-      ':active': {
-        boxShadow: 'inset 0 0 0 32px rgba(0,0,0,0.1)'
-      },
-      ':hover': {
-        backgroundColor: '#5B7BD5'
-      }
     },
     before: {
-      boxSizing: 'border-box',
       position: 'absolute',
       top: 0,
       left: 0,
       width: 34,
       height: '100%',
-      // borderRight: '#364e92 1px solid',
       background: "url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat"
     }
   }
