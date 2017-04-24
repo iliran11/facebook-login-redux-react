@@ -5,7 +5,8 @@ export function loadFbSdk(appId) {
       FB.init({
         appId,
         xfbml: true,
-        version: 'v2.8'
+        version: 'v2.8',
+        cookie: true
       });
       FB.AppEvents.logPageView();
       resolve('SDK Loaded!');

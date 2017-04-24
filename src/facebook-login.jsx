@@ -1,49 +1,93 @@
 /* global someFunction FB,window,document,fjs */
 
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { initLoginStatus, logIn, logOut } from './actions/thunks.js';
-import Spinner from './spinner.jsx';
 import merge from 'lodash/merge';
+import isFunction from 'lodash/isFunction';
+import { loadFbSdk, getLoginStatus, fbLogin, fbLogout } from './helpers/helpers.js';
+import Spinner from './spinner.jsx';
 
-class FacebookReduxLogin extends Component {
+export default class FacebookReduxLogin extends Component {
   constructor(props) {
     super(props);
     this.buttonClicked = this.buttonClicked.bind(this);
     this.showSpinner = this.showSpinner.bind(this);
     this.styles = merge({}, defaults.styles, props.style);
     this.labels = merge({}, defaults.labels, props.lables);
+    this.state = {
+      isWorking: false,
+      isConnected: false
+    };
   }
-  componentDidMount() {
-    this.props.initLoginStatus(this.props.appId);
+  login() {
+    this.setState({ isWorking: true });
+    fbLogin().then(response => {
+      console.log('login response', response);
+      this.setState({
+        isWorking: false,
+        isConnected: true
+      });
+      if (isFunction(this.props.onLogin)) {
+        this.props.onLogin(response);
+      }
+    });
+  }
+  logout() {
+    this.setState({ isWorking: true });
+    fbLogout().then(response => {
+      console.info('logout response', response);
+      this.setState({
+        isWorking: false,
+        isConnected: false
+      });
+      if (isFunction(this.props.onLogout)) {
+        this.props.onLogout(response);
+      }
+    }
+    );
+  }
+  componentWillMount() {
+    this.setState({
+      isWorking: true
+    });
+    loadFbSdk(this.props.appId)
+      .then(loadingResult => console.info(loadingResult, window.FB))
+      .then(() => getLoginStatus())
+      .then(response => {
+        if (response.status === 'connected') {
+          this.setState({ isConnected: true });
+        }
+        this.setState({ isWorking: false });
+        if (isFunction(this.props.willMount)) {
+          this.props.willMount(response);
+        }
+      });
+
   }
   getButtonText() {
-    console.log(this.props.isConnected);
-    switch (this.props.isConnected) {
+    switch (this.state.isConnected) {
       case true:
         return this.labels.logOut;
       case false:
         return this.labels.logIn;
+      default:
+        return 'this is default';
     }
   }
   buttonClicked() {
-    if (this.props.isConnected) {
-      this.props.logOut();
+    if (this.state.isConnected) {
+      this.logout();
     } else {
-      this.props.logIn();
+      this.login();
     }
-    this.props.onClick();
   }
   showSpinner() {
-    if (this.props.isWorking) {
+    if (this.state.isWorking) {
       return <Spinner />;
     } else {
       return <div style={defaults.styles.before} />;
     }
   }
   render() {
-    console.log('this.styles', this.styles);
     return (
       <div>
         <button onClick={this.buttonClicked} style={this.styles.loginBtn}>
@@ -54,18 +98,6 @@ class FacebookReduxLogin extends Component {
     );
   }
 }
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    initLoginStatus,
-    logOut,
-    logIn
-  }, dispatch);
-}
-
-function mapStateToProps(state) {
-  return { isConnected: state.facebookLogin.isConnected, isWorking: state.facebookLogin.isWorking };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(FacebookReduxLogin);
 
 const defaults = {
   labels: {
@@ -93,7 +125,7 @@ const defaults = {
         boxShadow: 'inset 0 0 0 32px rgba(0,0,0,0.1)'
       },
       ':hover': {
-        backgroundColor: '#5B7BD5',
+        backgroundColor: '#5B7BD5'
       }
     },
     before: {
