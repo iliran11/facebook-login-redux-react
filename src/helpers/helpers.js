@@ -1,8 +1,9 @@
-export function loadFbSdk() {
+export function loadFbSdk(appId) {
   return new Promise(resolve => {
+
     window.fbAsyncInit = function () {
       FB.init({
-        appId: '326022817735322',
+        appId,
         xfbml: true,
         version: 'v2.8'
       });

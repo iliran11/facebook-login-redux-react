@@ -1,10 +1,10 @@
-import { loadFbSdk, getLoginStatus, fbLogin, fbLogout } from '../helpers/facebook-login.js';
+import { loadFbSdk, getLoginStatus, fbLogin, fbLogout } from '../helpers/helpers.js';
 import { getLoginResponse, loginFetching } from './actions.js'
 
-export function initLoginStatus() {
-  return dispatch => {
+export function initLoginStatus(appId) {
+  return (dispatch) => {
     dispatch(loginFetching());
-    loadFbSdk()
+    loadFbSdk(appId)
       .then(loadingResult => console.log(loadingResult, window.FB))
       .then(() => getLoginStatus())
       .then(response => {

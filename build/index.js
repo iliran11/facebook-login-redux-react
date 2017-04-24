@@ -890,7 +890,6 @@ var FacebookReduxLogin = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (FacebookReduxLogin.__proto__ || Object.getPrototypeOf(FacebookReduxLogin)).call(this, props));
 
-    debugger;
     _this.buttonClicked = _this.buttonClicked.bind(_this);
     _this.showSpinner = _this.showSpinner.bind(_this);
     return _this;
