@@ -59,7 +59,7 @@ export default class FacebookReduxLogin extends Component {
   }
   showSpinner() {
     if (this.state.isWorking) {
-      return <Spinner />;
+      return <Spinner style={this.styles.spinner} />;
     } else {
       return <div style={defaults.styles.fbIcon} />;
     }

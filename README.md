@@ -59,6 +59,17 @@ they are passed as an object with 2 keys, 'loginBtn' and 'fbIcon' and they will 
       width: 34,
       height: '100%',
       background: "url(" + Icon + ") 6px 6px no-repeat"
+    },
+    spinner: {
+      boxSizing: 'border-box',
+      width: 30,
+      height: '90%',
+      borderRadius: '50%',
+      border: '5px solid #f3f3f3',
+      borderTop: '5px solid #3498db',
+      animation: 'spin 2s linear infinite',
+      position: 'absolute',
+      left: 5
     }
   }
 ```

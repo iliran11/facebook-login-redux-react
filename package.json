@@ -6,7 +6,8 @@
   "repository": "git@github.com:iliran11/facebook-login-redux-react.git",
   "scripts": {
     "demo": "cd demo && node ../node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "build": "webpack"
+    "build:dev": "webpack",
+    "build:prod": "webpack -p"
   },
   "author": "liran",
   "license": "ISC",

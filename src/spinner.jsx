@@ -1,10 +1,13 @@
 /* eslint  no-unsed-vars:0 */
 
 import React, { Component } from 'react';
+import merge from 'lodash/merge';
 import animation from './style/spinner.scss'; // eslint-disable-line no-unused-vars
 
 export default class Spinner extends Component {
-  render() {
+
+  constructor(props) {
+    super(props);
     const style = {
       boxSizing: 'border-box',
       width: 30,
@@ -16,6 +19,10 @@ export default class Spinner extends Component {
       position: 'absolute',
       left: 5
     };
-    return <div style={style} />;
+    this.styles = merge({}, style, props.style);
+
+  }
+  render() {
+    return <div style={this.styles} />;
   }
 }
