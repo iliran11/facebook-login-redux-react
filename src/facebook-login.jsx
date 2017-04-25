@@ -34,8 +34,8 @@ export default class FacebookReduxLogin extends Component {
           this.setState({ isConnected: true });
         }
         this.setState({ isWorking: false });
-        if (isFunction(this.props.willMount)) {
-          this.props.willMount(response);
+        if (isFunction(this.props.onWillMount)) {
+          this.props.onWillMount(response);
         }
       });
   }
@@ -61,7 +61,7 @@ export default class FacebookReduxLogin extends Component {
     if (this.state.isWorking) {
       return <Spinner />;
     } else {
-      return <div style={defaults.styles.before} />;
+      return <div style={defaults.styles.fbIcon} />;
     }
   }
   login() {
@@ -73,8 +73,8 @@ export default class FacebookReduxLogin extends Component {
       } else {
         this.setState({ isConnected: false, isWorking: false });
       }
-      if (isFunction(this.props.onLogin)) {
-        this.props.onLogin(response);
+      if (isFunction(this.props.onLoginEvent)) {
+        this.props.onLoginEvent(response);
       }
     });
   }
@@ -86,8 +86,8 @@ export default class FacebookReduxLogin extends Component {
         isWorking: false,
         isConnected: false
       });
-      if (isFunction(this.props.onLogout)) {
-        this.props.onLogout(response);
+      if (isFunction(this.props.onLogoutEvent)) {
+        this.props.onLogoutEvent(response);
       }
     }
     );
@@ -119,7 +119,7 @@ const defaults = {
       color: '#FFF',
       backgroundImage: 'linear-gradient(#4C69BA, #3B55A0)'
     },
-    before: {
+    fbIcon: {
       position: 'absolute',
       top: 0,
       left: 0,
