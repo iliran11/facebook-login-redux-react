@@ -3,7 +3,7 @@
 
 ## Active Development
 This respository is currently undergoing  development.
-I welcome any kind of contributions/requests/questions.
+I welcome any kind of contributions/requests/questions/general feedback.
 possible methods to contact me:
 
 1. open an issue
