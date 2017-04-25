@@ -1,5 +1,7 @@
+/* eslint  no-unsed-vars:0 */
+
 import React, { Component } from 'react';
-import animation from './spinner.scss';
+import animation from './style/spinner.scss'; // eslint-disable-line no-unused-vars
 
 export default class Spinner extends Component {
   render() {

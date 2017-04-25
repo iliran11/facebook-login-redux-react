@@ -11,19 +11,39 @@
     "modules": false
   },
   "rules": {
-    "react/prefer-stateless-function": [0],
-    "import/extensions": [0],
-    "import/no-extraneous-dependencies": [2, {
-      "devDependencies": true,
-      "optionalDependencies": true
-    }],
-    "arrow-parens": [2, "as-needed"],
-    "no-underscore-dangle": [2, {
-      "allowAfterThis": true
-    }],
+    "react/prefer-stateless-function": [
+      0
+    ],
+    "import/extensions": [
+      0
+    ],
+    "import/no-extraneous-dependencies": [
+      2,
+      {
+        "devDependencies": true,
+        "optionalDependencies": true
+      }
+    ],
+    "arrow-parens": [
+      2,
+      "as-needed"
+    ],
+    "no-underscore-dangle": [
+      2,
+      {
+        "allowAfterThis": true
+      }
+    ],
     "no-console": 0,
-    "comma-dangle": [2, "never"], // not sure why airbnb turned this on. gross!
-    "max-len": [2, 200, 4],
+    "comma-dangle": [
+      2,
+      "never"
+    ], // not sure why airbnb turned this on. gross!
+    "max-len": [
+      2,
+      200,
+      4
+    ],
     "no-else-return": 0,
     "new-cap": 0,
     "prefer-template": 0,
@@ -33,6 +53,8 @@
     "linebreak-style": 0,
     "jsx-a11y/label-has-for": 0,
     "eol-last": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/jsx-boolean-value": 0,
+    "no-use-before-define": 0
   }
 }

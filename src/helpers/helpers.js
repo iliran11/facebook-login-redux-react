@@ -1,7 +1,8 @@
+/* global window, FB, document */
+
 export function loadFbSdk(appId) {
   return new Promise(resolve => {
-
-    window.fbAsyncInit = function () {
+    window.fbAsyncInit = function () { // eslint-disable-line func-names
       FB.init({
         appId,
         xfbml: true,
@@ -11,7 +12,7 @@ export function loadFbSdk(appId) {
       FB.AppEvents.logPageView();
       resolve('SDK Loaded!');
     };
-    (function (d, s, id) {
+    (function (d, s, id) { // eslint-disable-line func-names
       const fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) { return; }
       const js = d.createElement(s); js.id = id;

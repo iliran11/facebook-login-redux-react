@@ -27,7 +27,19 @@ module.exports = {
             includePaths: ['absolute/path/a', 'absolute/path/b']
           }
         }]
+      },
+      {
+        test: /\.(gif|png)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: './asset/[hash].[ext]'
+            }
+          }
+        ]
+
       }]
   }
-
 };

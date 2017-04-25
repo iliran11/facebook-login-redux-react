@@ -5,7 +5,7 @@ import FacebookReduxLogin from '../../src/facebook-login.jsx';
 export default class App extends Component {
   render() {
     return (
-      <FacebookReduxLogin appId='326022817735322' onLogin={response => { console.log('login!', response) }} />
+      <FacebookReduxLogin appId='326022817735322' verbose={true} onLogin={response => { console.log('login!', response); }} />
     );
   }
 }

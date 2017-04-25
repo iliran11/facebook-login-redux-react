@@ -5,6 +5,7 @@ import merge from 'lodash/merge';
 import isFunction from 'lodash/isFunction';
 import { loadFbSdk, getLoginStatus, fbLogin, fbLogout } from './helpers/helpers.js';
 import Spinner from './spinner.jsx';
+import Icon from './style/icon.png';
 
 export default class FacebookReduxLogin extends Component {
   constructor(props) {
@@ -13,44 +14,20 @@ export default class FacebookReduxLogin extends Component {
     this.showSpinner = this.showSpinner.bind(this);
     this.styles = merge({}, defaults.styles, props.style);
     this.labels = merge({}, defaults.labels, props.lables);
+    this.verbose = this.props.verbose;
     this.state = {
       isWorking: false,
       isConnected: false
     };
-  }
-  login() {
-    this.setState({ isWorking: true });
-    fbLogin().then(response => {
-      console.log('login response', response);
-      this.setState({
-        isWorking: false,
-        isConnected: true
-      });
-      if (isFunction(this.props.onLogin)) {
-        this.props.onLogin(response);
-      }
-    });
-  }
-  logout() {
-    this.setState({ isWorking: true });
-    fbLogout().then(response => {
-      console.info('logout response', response);
-      this.setState({
-        isWorking: false,
-        isConnected: false
-      });
-      if (isFunction(this.props.onLogout)) {
-        this.props.onLogout(response);
-      }
-    }
-    );
   }
   componentWillMount() {
     this.setState({
       isWorking: true
     });
     loadFbSdk(this.props.appId)
-      .then(loadingResult => console.info(loadingResult, window.FB))
+      .then(loadingResult => {
+        if (this.verbose) console.info(loadingResult, window.FB);
+      })
       .then(() => getLoginStatus())
       .then(response => {
         if (response.status === 'connected') {
@@ -61,8 +38,8 @@ export default class FacebookReduxLogin extends Component {
           this.props.willMount(response);
         }
       });
-
   }
+
   getButtonText() {
     switch (this.state.isConnected) {
       case true:
@@ -86,6 +63,34 @@ export default class FacebookReduxLogin extends Component {
     } else {
       return <div style={defaults.styles.before} />;
     }
+  }
+  login() {
+    this.setState({ isWorking: true });
+    fbLogin().then(response => {
+      if (this.verbose) console.info('login response', response);
+      if (response.status === 'connected') {
+        this.setState({ isConnected: true, isWorking: false });
+      } else {
+        this.setState({ isConnected: false, isWorking: false });
+      }
+      if (isFunction(this.props.onLogin)) {
+        this.props.onLogin(response);
+      }
+    });
+  }
+  logout() {
+    this.setState({ isWorking: true });
+    fbLogout().then(response => {
+      if (this.verbose) console.info('logout response', response);
+      this.setState({
+        isWorking: false,
+        isConnected: false
+      });
+      if (isFunction(this.props.onLogout)) {
+        this.props.onLogout(response);
+      }
+    }
+    );
   }
   render() {
     return (
@@ -112,7 +117,7 @@ const defaults = {
       lineHeight: '34px',
       fontSize: '16px',
       color: '#FFF',
-      backgroundImage: 'linear-gradient(#4C69BA, #3B55A0)',
+      backgroundImage: 'linear-gradient(#4C69BA, #3B55A0)'
     },
     before: {
       position: 'absolute',
@@ -120,7 +125,7 @@ const defaults = {
       left: 0,
       width: 34,
       height: '100%',
-      background: "url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat"
+      background: "url(" + Icon + ") 6px 6px no-repeat"
     }
   }
 };
