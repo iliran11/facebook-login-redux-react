@@ -1,6 +1,6 @@
 {
   "name": "facebook-login-redux-react",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "work in progress",
   "main": "./dist/build.js",
   "repository": "git@github.com:iliran11/facebook-login-redux-react.git",

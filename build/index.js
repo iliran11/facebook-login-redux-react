@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 111);
+/******/ 	return __webpack_require__(__webpack_require__.s = 112);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -979,6 +979,10 @@ var _spinner = __webpack_require__(34);
 
 var _spinner2 = _interopRequireDefault(_spinner);
 
+var _icon = __webpack_require__(111);
+
+var _icon2 = _interopRequireDefault(_icon);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1024,8 +1028,8 @@ var FacebookReduxLogin = function (_Component) {
           _this2.setState({ isConnected: true });
         }
         _this2.setState({ isWorking: false });
-        if ((0, _isFunction2.default)(_this2.props.willMount)) {
-          _this2.props.willMount(response);
+        if ((0, _isFunction2.default)(_this2.props.onWillMount)) {
+          _this2.props.onWillMount(response);
         }
       });
     }
@@ -1056,7 +1060,7 @@ var FacebookReduxLogin = function (_Component) {
       if (this.state.isWorking) {
         return _react2.default.createElement(_spinner2.default, null);
       } else {
-        return _react2.default.createElement('div', { style: defaults.styles.before });
+        return _react2.default.createElement('div', { style: defaults.styles.fbIcon });
       }
     }
   }, {
@@ -1072,8 +1076,8 @@ var FacebookReduxLogin = function (_Component) {
         } else {
           _this3.setState({ isConnected: false, isWorking: false });
         }
-        if ((0, _isFunction2.default)(_this3.props.onLogin)) {
-          _this3.props.onLogin(response);
+        if ((0, _isFunction2.default)(_this3.props.onLoginEvent)) {
+          _this3.props.onLoginEvent(response);
         }
       });
     }
@@ -1089,8 +1093,8 @@ var FacebookReduxLogin = function (_Component) {
           isWorking: false,
           isConnected: false
         });
-        if ((0, _isFunction2.default)(_this4.props.onLogout)) {
-          _this4.props.onLogout(response);
+        if ((0, _isFunction2.default)(_this4.props.onLogoutEvent)) {
+          _this4.props.onLogoutEvent(response);
         }
       });
     }
@@ -1131,13 +1135,13 @@ var defaults = {
       color: '#FFF',
       backgroundImage: 'linear-gradient(#4C69BA, #3B55A0)'
     },
-    before: {
+    fbIcon: {
       position: 'absolute',
       top: 0,
       left: 0,
       width: 34,
       height: '100%',
-      background: "url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat"
+      background: "url(" + _icon2.default + ") 6px 6px no-repeat"
     }
   }
 };
@@ -5946,8 +5950,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js??ref--1-2!./spinner.scss", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js??ref--1-2!./spinner.scss");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js??ref--1-2!./spinner.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js??ref--1-2!./spinner.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -5958,6 +5962,12 @@ if(false) {
 
 /***/ }),
 /* 111 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpmZmYyZjIyZi04ZDdlLTQzNjEtYjM2Zi02NGFiYmI2Nzg3ZDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTREMzBERkE2NjFBMTFFNDk5OEZFQ0REMkU5OTk0QTQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTREMzBERjk2NjFBMTFFNDk5OEZFQ0REMkU5OTk0QTQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNGZlZTRmMS0wMGNjLTRlZTEtYTY5MS00MjJmOGUxY2VmYjciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ZmZmMmYyMmYtOGQ3ZS00MzYxLWIzNmYtNjRhYmJiNjc4N2Q1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+F7pueQAAAKpJREFUeNpi+P//PwM2jA0AxZWBeA4QP/2PCl5j6CfWYKCYJRB//o8boOhnxOU6RkZGZENZgNQNIFZmwA0YkTksDMQBOyyGvgfic0D8BZsGYg3WQeP/AGItoK9eIPkKRQETkQYLofHvIxuKDRBrMDr4RUgBuQYTBDhTBSjYSDDnGhBr08LFd2kVFPdoZfBdbFmVYJYG8hvQsu8FQubQLFWMGjxq8HAwGCDAAM8dwEI+7fo0AAAAAElFTkSuQmCC"
+
+/***/ }),
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(31);

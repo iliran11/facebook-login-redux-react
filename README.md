@@ -31,6 +31,9 @@ Example:
   onLogoutEvent = {(authResponse) => console.log('callback. the response: ' , authResponse)}
 />
 ```
+## Development
+
+- running the demo on dev server `npm run demo`. this will run the demo app, which is configured for redux, 
 
 ## Styles
 Styles are fully mergable and extensible.
@@ -56,6 +59,9 @@ they are passed as an object with 2 keys, 'loginBtn' and 'fbIcon' and they will 
     }
   }
 ```
+# redux
+
+will add a demo showing integration with redux.
 
 # Testing
 
