@@ -1,4 +1,4 @@
-
+## example of default styling of the button
 ![button preview](http://i.imgur.com/4UHZAtX.png "")
 
 ## Active Development
