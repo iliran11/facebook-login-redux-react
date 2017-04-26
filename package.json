@@ -1,8 +1,8 @@
 {
   "name": "facebook-login-redux-react",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "a button component in order to make easier integration with facebook",
-  "main": "./dist/build.js",
+  "main": "./build/index.js",
   "repository": "git@github.com:iliran11/facebook-login-redux-react.git",
   "scripts": {
     "demo": "cd demo && node ../node_modules/webpack-dev-server/bin/webpack-dev-server.js",
