@@ -13,7 +13,7 @@ possible methods to contact me:
 ### Installation
 
 ```
-npm install --save facebook-login-react
+npm i facebook-login-redux-react
 ```
 
 ## Usage
