@@ -10,6 +10,9 @@ import Icon from './style/icon.png';
 export default class FacebookReduxLogin extends Component {
   constructor(props) {
     super(props);
+    if (typeof this.props.appId !== 'string') {
+      console.error('You have to provide an appId prop. please check developer.facebook.com');
+    }
     this.buttonClicked = this.buttonClicked.bind(this);
     this.showSpinner = this.showSpinner.bind(this);
     this.styles = merge({}, defaults.styles, props.style);
