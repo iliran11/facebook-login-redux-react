@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-// import FacebookReduxLogin from '../../src/facebook-login.jsx';
-import FacebookReduxLogin from '../../build/index.js';
+import FacebookReduxLogin from '../../src/facebook-login.jsx';
 
 export default class App extends Component {
   render() {
     return (
       <FacebookReduxLogin appId='326022817735322'
-       verbose={true}
-        onLogin={response => { console.log('login!', response); }} />
+        verbose={false}
+        onLoginEvent={() => { console.log('logged !!!'); }}
+      />
     );
   }
 }
