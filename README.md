@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/dm/facebook-login-redux-react.svg)](https://www.npmjs.com/package/facebook-login-redux-react)
+
 example of default styling of the button
 ======
 
