@@ -1,12 +1,12 @@
 /* global window, FB, document */
 
-export function loadFbSdk(appId) {
+export function loadFbSdk(appId, version) {
   return new Promise(resolve => {
     window.fbAsyncInit = function () { // eslint-disable-line func-names
       FB.init({
         appId,
         xfbml: true,
-        version: 'v2.8',
+        version,
         cookie: true
       });
       FB.AppEvents.logPageView();
@@ -30,9 +30,9 @@ export function getLoginStatus() {
   });
 }
 
-export function fbLogin() {
+export function fbLogin(options) {
   return new Promise(resolve => {
-    window.FB.login(response => resolve(response));
+    window.FB.login(response => resolve(response), options);
   });
 }
 export function fbLogout() {

@@ -2,8 +2,6 @@
 bundle.js
 npm-debug.log
 .DS_Store
-build
-dist
 
 # IntelliJ
 *.iml

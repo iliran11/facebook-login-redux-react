@@ -1,7 +1,11 @@
-## example of default styling of the button
+example of default styling of the button
+======
+
 ![button preview](http://i.imgur.com/4UHZAtX.png "")
 
-## Active Development
+Active Development
+======
+
 This respository is currently undergoing  development.
 I welcome any kind of contributions/requests/questions/general feedback.
 possible methods to contact me:
@@ -10,19 +14,37 @@ possible methods to contact me:
 2. send me a mail: iliran11@gmail.com
 3. contact me on facebook: you can find me with my mail address: iliran11@gmail.com
 
-### Installation
+Installation
+======
 
 ```
 npm i facebook-login-redux-react
 ```
 
-## Usage
+Usage
+======
 
-The button object has one required props:
+Props
+------
 
-- `appId` to make a connection to your app. for information on obtainining an appId please visit: [Facebook Developers](https://developers.facebook.com)
+
+| Props 	| Type 	| Default 	| Notes 	|
+|---------------	|----------	|---------------------------------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| appId 	| string 	| None.It is a required prop. 	|  	|
+| version 	| string 	| 'v2.9' 	| refer to [Facebook Docs](https://developers.facebook.com/docs/apps/changelog/) for explanation on available values 	|
+| loginLabel 	| string 	| Log In To Facebook 	|  	|
+| loginOptions 	| object 	| {scope: 'user_friends,email,user_birthday'} 	| all options listed on [Facebook Docs](https://developers.facebook.com/docs/reference/javascript/FB.login/v2.9) are passable with camelCase. e.g : {returnScopes: false} 	|
+| logoutLabel 	| string 	| Log out from Facebook 	|   	|
+| verbose 	| boolean 	| false 	|  	|
+| onWillMount 	| function 	|  	|  	|
+| onLoginEvent 	| function 	|  	|  	|
+| onLogoutEvent 	| function 	|  	|  	|
+
+
 
 Example:
+------
+
 
 ```xml
 <FacebookLogin
@@ -34,11 +56,14 @@ Example:
   onLogoutEvent = {(authResponse) => console.log('callback. the response: ' , authResponse)}
 />
 ```
-## Development
+Development
+======
 
 - running the demo on dev server `npm run demo`. this will run the demo app, which is configured for redux, 
 
-## Styles
+Styles
+======
+
 Styles are fully mergable and extensible.
 they are passed as an object with 2 keys, 'loginBtn' and 'fbIcon' and they will be merged with the default styles object (will soon add support for the spinner styling)
 ```js
@@ -73,14 +98,16 @@ they are passed as an object with 2 keys, 'loginBtn' and 'fbIcon' and they will 
     }
   }
 ```
-# redux
+redux
+======
 
 will add a demo showing integration with redux.
 
-# Testing
+Testing
+======
 
 tests will be added hopefully soon.
 
-# Demos
+Demos
+======
 to be added.
-

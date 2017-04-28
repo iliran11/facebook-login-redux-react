@@ -6,7 +6,6 @@ export default class App extends Component {
     return (
       <FacebookReduxLogin appId='326022817735322'
         verbose={false}
-        onLoginEvent={() => { console.log('logged !!!'); }}
       />
     );
   }

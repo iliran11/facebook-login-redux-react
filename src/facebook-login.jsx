@@ -21,7 +21,7 @@ export default class FacebookReduxLogin extends Component {
     this.setState({
       isWorking: true
     });
-    loadFbSdk(this.props.appId)
+    loadFbSdk(this.props.appId, this.props.version)
       .then(loadingResult => {
         if (this.props.verbose) console.info(loadingResult, window.FB);
       })
@@ -38,9 +38,9 @@ export default class FacebookReduxLogin extends Component {
   getButtonText() {
     switch (this.state.isConnected) {
       case true:
-        return this.props.logOut;
+        return this.props.logoutLabel;
       case false:
-        return this.props.logIn;
+        return this.props.loginLabel;
       default:
         return 'this is default';
     }
@@ -61,7 +61,7 @@ export default class FacebookReduxLogin extends Component {
   }
   login() {
     this.setState({ isWorking: true });
-    fbLogin().then(response => {
+    fbLogin(this.props.loginOptions).then(response => {
       if (this.props.verbose) console.info('login response', response);
       if (response.status === 'connected') {
         this.setState({ isConnected: true, isWorking: false });
@@ -87,6 +87,7 @@ export default class FacebookReduxLogin extends Component {
     this.styles = merge({}, styles, this.props.style);
     return (
       <div>
+        {this.props.loginOptions.color}
         <button onClick={this.buttonClicked} style={this.styles.loginBtn}>
           {this.showSpinner()}
           {this.getButtonText()}
@@ -98,16 +99,28 @@ export default class FacebookReduxLogin extends Component {
 
 FacebookReduxLogin.propTypes = {
   appId: PropTypes.string.isRequired,
-  logIn: PropTypes.string,
-  logOut: PropTypes.string,
+  version: PropTypes.string,
+  loginLabel: PropTypes.string,
+  loginOptions: PropTypes.shape({
+    authType: PropTypes.string,
+    scope: PropTypes.string,
+    returnScopes: PropTypes.bool,
+    enableProfileSelector: PropTypes.bool,
+    profileSelectorIds: PropTypes.string
+  }),
+  logoutLabel: PropTypes.string,
   verbose: PropTypes.bool,
   onWillMount: PropTypes.func,
   onLoginEvent: PropTypes.func,
   onLogoutEvent: PropTypes.func
 };
 FacebookReduxLogin.defaultProps = {
-  logIn: 'Log In To Facebook',
-  logOut: 'Log out from Facebook',
+  loginLabel: 'Log In To Facebook',
+  version: 'v2.9',
+  loginOptions: {
+    scope: 'user_friends,email,user_birthday'
+  },
+  logoutLabel: 'Log out from Facebook',
   verbose: false,
   onWillMount: () => { },
   onLoginEvent: () => { },
