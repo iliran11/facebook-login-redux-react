@@ -46,6 +46,7 @@ export default class FacebookReduxLogin extends Component {
     }
   }
   buttonClicked() {
+    this.props.onClick();
     if (this.state.isConnected) {
       this.logout();
     } else {
@@ -112,7 +113,8 @@ FacebookReduxLogin.propTypes = {
   verbose: PropTypes.bool,
   onWillMount: PropTypes.func,
   onLoginEvent: PropTypes.func,
-  onLogoutEvent: PropTypes.func
+  onLogoutEvent: PropTypes.func,
+  onClick: PropTypes.func
 };
 FacebookReduxLogin.defaultProps = {
   loginLabel: 'Log In To Facebook',
@@ -124,5 +126,6 @@ FacebookReduxLogin.defaultProps = {
   verbose: false,
   onWillMount: () => { },
   onLoginEvent: () => { },
-  onLogoutEvent: () => { }
+  onLogoutEvent: () => { },
+  onClick: () => { }
 };

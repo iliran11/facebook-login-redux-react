@@ -39,6 +39,7 @@ Props
 | logoutLabel 	| string 	| Log out from Facebook 	|   	|
 | verbose 	| boolean 	| false 	|  	|
 | onWillMount 	| function 	|  	|  	|
+| onClick 	| function 	|  	| will execute before the onLoginEvent/onLogoutEvent. useful for triggering the fetching event for redux store. 	|
 | onLoginEvent 	| function 	|  	|  	|
 | onLogoutEvent 	| function 	|  	|  	|
 
