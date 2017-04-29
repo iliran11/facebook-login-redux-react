@@ -2,7 +2,6 @@ export default function (state = { isConnected: false, isWorking: false }, actio
   switch (action.type) {
     case 'loginResponse':
       if (action.payload === 'connected') {
-        console.log('here!');
         return ({
           isConnected: true,
           isWorking: false
