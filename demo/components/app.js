@@ -1,10 +1,10 @@
 /* global FB */
 
 import React, { Component } from 'react';
-import FacebookReduxLogin from '../../src/facebook-login.jsx';
 import { connect } from 'react-redux';
-import { getLoginStatus, startFetching, getUserInformation } from '../actions.js';
 import { bindActionCreators } from 'redux';
+import FacebookReduxLogin from '../../src/facebook-login.jsx';
+import { getLoginStatus, startFetching, getUserInformation } from '../actions.js';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class App extends Component {
   }
   login(response) {
     this.props.getLoginStatus(response.status);
-    FB.api('/me', 'GET', { 'fields': 'id,name,email,cover,picture.width(200)' },
+    FB.api('/me', 'GET', { fields: 'id,name,email,cover,picture.width(200)' },
       userInformation => {
         this.props.getUserInformation(userInformation);
       }
@@ -25,8 +25,13 @@ class App extends Component {
   }
   showUserInformation() {
     if (this.props.userInformation) {
+      const { id, name, email } = this.props.userInformation;
       return (
-        <div>hello</div>
+        <ul style={styles.well}>
+          <li>{id}</li>
+          <li>{name}</li>
+          <li>{email}</li>
+        </ul>
       );
     } else {
       return null;
@@ -35,15 +40,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <FacebookReduxLogin appId='326022817735322'
+        <FacebookReduxLogin
+          appId='326022817735322'
           verbose={false}
           onLoginEvent={this.login}
           onLogoutEvent={this.login}
           onClick={() => this.props.startFetching()}
         />
         {this.showUserInformation()}
-      </div>
-    );
+      </div>);
   }
 }
 
@@ -56,4 +61,14 @@ function mapStateToProps(state) {
   return { userInformation: state.userInformation };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+const styles = {
+  well: {
+    background: '#28282B',
+    borderRadius: 10,
+    boxShadow: 'inset 0 0 10px black, 0 0 10px black',
+    padding: 10,
+    textAlign: 'center'
+  }
+};
