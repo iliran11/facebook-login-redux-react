@@ -69,7 +69,7 @@ Example:
 Development
 ======
 
-- running the demo on dev server `npm run demo`. this will run the demo app, which is configured for redux, 
+- running the demo on dev server `npm start`. this will run the demo app, which is configured for redux, 
 
 Styles
 ======
