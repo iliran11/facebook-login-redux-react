@@ -18,9 +18,12 @@ default styling of the button
 
 example: integrating the button with redux
 ======
-source code can be found in [demo](https://github.com/iliran11/facebook-login-react/tree/master/demo) folder.
+source code can be found in [demo]
+
+(https://github.com/iliran11/facebook-login-react/tree/master/demo) folder.
 the actual component is just the button (:
 ![app preview](http://i.imgur.com/MzaCdgO.gif "")
+
 
 
 Installation
