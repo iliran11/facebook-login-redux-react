@@ -120,7 +120,7 @@ FacebookReduxLogin.defaultProps = {
   loginLabel: 'Log In To Facebook',
   version: 'v2.9',
   loginOptions: {
-    scope: 'user_friends,email,user_birthday'
+    scope: 'email'
   },
   logoutLabel: 'Log out from Facebook',
   verbose: false,

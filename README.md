@@ -1,10 +1,3 @@
-[![npm](https://img.shields.io/npm/dm/facebook-login-redux-react.svg)](https://www.npmjs.com/package/facebook-login-redux-react)
-
-example of default styling of the button
-======
-
-![button preview](http://i.imgur.com/4UHZAtX.png "")
-
 Active Development
 ======
 
@@ -12,9 +5,23 @@ This respository is currently undergoing  development.
 I welcome any kind of contributions/requests/questions/general feedback.
 possible methods to contact me:
 
-1. open an issue
+1. [open an Issue](https://github.com/iliran11/facebook-login-react/issues/new)
 2. send me a mail: iliran11@gmail.com
-3. contact me on facebook: you can find me with my mail address: iliran11@gmail.com
+3. [contact me on facebook](https://www.facebook.com/Liran.Co.1984)
+
+[![npm](https://img.shields.io/npm/dm/facebook-login-redux-react.svg)](https://www.npmjs.com/package/facebook-login-redux-react)
+
+default styling of the button
+======
+
+![button preview](http://i.imgur.com/4UHZAtX.png "")
+
+example: integrating the button with redux
+======
+source code can be found in [demo](https://github.com/iliran11/facebook-login-react/tree/master/demo) folder.
+the actual component is just the button (:
+![app preview](http://i.imgur.com/MzaCdgO.gif "")
+
 
 Installation
 ======
@@ -35,7 +42,7 @@ Props
 | appId 	| string 	| None.It is a required prop. 	|  	|
 | version 	| string 	| 'v2.9' 	| refer to [Facebook Docs](https://developers.facebook.com/docs/apps/changelog/) for explanation on available values 	|
 | loginLabel 	| string 	| Log In To Facebook 	|  	|
-| loginOptions 	| object 	| {scope: 'user_friends,email,user_birthday'} 	| all options listed on [Facebook Docs](https://developers.facebook.com/docs/reference/javascript/FB.login/v2.9) are passable with camelCase. e.g : {returnScopes: false} 	|
+| loginOptions 	| object 	| {scope: 'email'} 	| all options listed on [Facebook Docs](https://developers.facebook.com/docs/reference/javascript/FB.login/v2.9) are passable with camelCase. e.g : {returnScopes: false} 	|
 | logoutLabel 	| string 	| Log out from Facebook 	|   	|
 | verbose 	| boolean 	| false 	|  	|
 | onWillMount 	| function 	|  	|  	|
@@ -50,14 +57,13 @@ Example:
 
 
 ```xml
-<FacebookLogin
-  appId = "123456778810"
+<FacebookReduxLogin
+  appId='12345678'
   verbose={true}
-  onWillMount = {(authResponse) => console.log('callback. the response: ' , authResponse)}
-  on
-  onLoginEvent = {(authResponse) => console.log('callback. the response: ' , authResponse)}
-  onLogoutEvent = {(authResponse) => console.log('callback. the response: ' , authResponse)}
-/>
+  onLoginEvent={this.login}
+  onLogoutEvent={this.logout}
+  onClick={() => this.props.startFetching()}
+  />
 ```
 Development
 ======
@@ -101,16 +107,8 @@ they are passed as an object with 2 keys, 'loginBtn' and 'fbIcon' and they will 
     }
   }
 ```
-redux
-======
 
-will add a demo showing integration with redux.
-
-Testing
+Tests
 ======
 
 tests will be added hopefully soon.
-
-Demos
-======
-to be added.
