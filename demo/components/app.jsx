@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import FacebookReduxLogin from '../../src/facebook-login.jsx';
+// import FacebookReduxLogin from '../../src/facebook-login.jsx';
+import FacebookReduxLogin from '../../build/index.js';
 import { getLoginStatus, startFetching, getUserInformation } from '../actions.js';
 import Well from './well.jsx';
 import ListItem from './listItem.jsx';
@@ -18,6 +19,7 @@ class App extends Component {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.getUserInformation = this.getUserInformation.bind(this);
+    this.styles = {};
   }
 
   login(response) {

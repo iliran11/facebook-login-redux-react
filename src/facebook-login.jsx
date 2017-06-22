@@ -2,10 +2,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import merge from 'lodash/merge';
 import { loadFbSdk, getLoginStatus, fbLogin, fbLogout } from './helpers/helpers.js';
 import Spinner from './spinner.jsx';
-import styles from './style/styles.js';
+import defaultStyles from './style/styles.js';
 
 export default class FacebookReduxLogin extends Component {
   constructor(props) {
@@ -16,6 +15,7 @@ export default class FacebookReduxLogin extends Component {
       isWorking: false,
       isConnected: false
     };
+    this.styles = {};
   }
   componentWillMount() {
     this.setState({
@@ -57,7 +57,7 @@ export default class FacebookReduxLogin extends Component {
     if (this.state.isWorking) {
       return <Spinner style={this.styles.spinner} />;
     } else {
-      return <div style={styles.fbIcon} />;
+      return <div style={this.styles.fbIcon} />;
     }
   }
   login() {
@@ -85,7 +85,11 @@ export default class FacebookReduxLogin extends Component {
     );
   }
   render() {
-    this.styles = merge({}, styles, this.props.style);
+    if (this.styles) {
+      this.styles.loginBtn = Object.assign({}, defaultStyles.loginBtn, this.styles.loginBtn);
+      this.styles.fbIcon = Object.assign({}, defaultStyles.fbIcon, this.styles.fbIcon);
+      this.styles.spinner = Object.assign({}, defaultStyles.spinner, this.styles.spinner);
+    }
     return (
       <div>
         {this.props.loginOptions.color}
@@ -127,5 +131,6 @@ FacebookReduxLogin.defaultProps = {
   onWillMount: () => { },
   onLoginEvent: () => { },
   onLogoutEvent: () => { },
-  onClick: () => { }
+  onClick: () => { },
+  styles: {}
 };

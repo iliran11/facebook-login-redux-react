@@ -3,7 +3,6 @@ import merge from 'lodash/merge';
 import Lock from '../style/login.svg';
 
 const Well = props => {
-  console.log(props);
   if (props.isDisplayed) {
     return (
       <div style={styles}>
