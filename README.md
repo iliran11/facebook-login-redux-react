@@ -1,7 +1,5 @@
-Active Development
+Contribute
 ======
-
-This respository is currently undergoing  development.
 I welcome any kind of contributions/requests/questions/general feedback.
 possible methods to contact me:
 
@@ -11,12 +9,12 @@ possible methods to contact me:
 
 [![npm](https://img.shields.io/npm/dm/facebook-login-redux-react.svg)](https://www.npmjs.com/package/facebook-login-redux-react)
 
-default styling of the button
+Default Styling Of The Button
 ======
 
 ![button preview](http://i.imgur.com/4UHZAtX.png "")
 
-example: integrating the button with redux
+Example: Integrating  Button with Redux
 ======
 source code can be found in [demo](https://github.com/iliran11/facebook-login-react/tree/master/demo) folder.
 the actual component is just the button (:
