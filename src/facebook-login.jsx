@@ -86,8 +86,8 @@ export default class FacebookReduxLogin extends Component {
   render() {
     return (
       <button onClick={this.buttonClicked} style={this.styles()}>
-        <ButtonText {...this.buttonText() } />
         {this.props.children}
+        <ButtonText {...this.buttonText() } />
       </button>
     );
   }

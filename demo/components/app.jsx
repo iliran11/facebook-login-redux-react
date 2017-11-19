@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import FacebookReduxLogin from '../../src/facebook-login.jsx';
-// import FacebookReduxLogin from '../../build/index.js';
 import { getLoginStatus, startFetching, getUserInformation } from '../actions.js';
 import Well from './well.jsx';
 import ListItem from './listItem.jsx';
 import Mail from '../style/mail.svg';
 import Name from '../style/face.svg';
 import Id from '../style/id.svg';
+import Spinner from './spinner.jsx';
+import Icon from '../style/icon.png';
 
 
 class App extends Component {
@@ -51,7 +52,7 @@ class App extends Component {
           onLogoutEvent={this.logout}
           onClick={() => this.props.startFetching()}
         >
-          <Spinner />
+          <ButtonIndicator isWorking={this.props.facebookLogin.isWorking} />
         </FacebookReduxLogin>
         <Well isDisplayed={this.props.userInformation}>
           <ListItem text={id} svg={Id} />
@@ -63,6 +64,18 @@ class App extends Component {
   }
 }
 
+const ButtonIndicator = ({ isWorking }) => {
+  const style = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 34,
+    height: '100%',
+    background: 'url(' + Icon + ') 6px 6px no-repeat'
+  };
+  if (isWorking) return <Spinner />;
+  return <div style={style} />;
+};
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getLoginStatus, startFetching, getUserInformation
@@ -73,20 +86,6 @@ function mapStateToProps(state) {
     userInformation: state.userInformation,
     facebookLogin: state.facebookLogin
   };
-}
-function Spinner(props) {
-  const style= {
-    boxSizing: 'border-box',
-    width: 30,
-    height: '90%',
-    borderRadius: '50%',
-    border: '5px solid #f3f3f3',
-    borderTop: '5px solid #3498db',
-    animation: 'spin 2s linear infinite',
-    position: 'absolute',
-    left: 5
-  };
-  return <div style={style} />;
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
