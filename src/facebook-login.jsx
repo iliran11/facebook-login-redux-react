@@ -1,4 +1,4 @@
-/* global someFunction FB,window,document,fjs */
+/* global FB,document,fjs */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -19,16 +19,14 @@ export default class FacebookReduxLogin extends Component {
       isWorking: true
     });
     loadFbSdk(this.props.appId, this.props.version)
-      .then(loadingResult => {
-        if (this.props.verbose) console.info(loadingResult, window.FB);
-      })
       .then(() => getLoginStatus())
       .then(response => {
-        if (response.status === 'connected') {
+        const isConnected = response.status === 'connected' ? true : false
+        if (isConnected) {
           this.setState({ isConnected: true });
         }
         this.setState({ isWorking: false });
-        this.props.onWillMount(response);
+        this.props.sdkLoaded({ isConnected, FB });
       });
   }
   buttonText() {
@@ -39,9 +37,9 @@ export default class FacebookReduxLogin extends Component {
     }
   }
   styles() {
-    return   {
+    return {
       display: 'flex',
-      alignItems:'center',
+      alignItems: 'center',
       position: 'relative',
       padding: '0 15px 0px 46px',
       border: 'none',
@@ -62,7 +60,6 @@ export default class FacebookReduxLogin extends Component {
   login() {
     this.setState({ isWorking: true });
     fbLogin(this.props.loginOptions).then(response => {
-      if (this.props.verbose) console.info('login response', response);
       if (response.status === 'connected') {
         this.setState({ isConnected: true, isWorking: false });
       } else {
@@ -74,7 +71,6 @@ export default class FacebookReduxLogin extends Component {
   logout() {
     this.setState({ isWorking: true });
     fbLogout().then(response => {
-      if (this.props.verbose) console.info('logout response', response);
       this.setState({
         isWorking: false,
         isConnected: false
@@ -96,7 +92,7 @@ export default class FacebookReduxLogin extends Component {
 const ButtonText = ({ isConnected, logoutLabel, loginLabel }) => {
   return (
     <span>
-      {isConnected ? loginLabel : logoutLabel}
+      {isConnected ? logoutLabel : loginLabel}
     </span>
   )
 }
@@ -113,8 +109,6 @@ FacebookReduxLogin.propTypes = {
     profileSelectorIds: PropTypes.string
   }),
   logoutLabel: PropTypes.string,
-  verbose: PropTypes.bool,
-  onWillMount: PropTypes.func,
   onLoginEvent: PropTypes.func,
   onLogoutEvent: PropTypes.func,
   onClick: PropTypes.func
@@ -126,8 +120,6 @@ FacebookReduxLogin.defaultProps = {
     scope: 'email'
   },
   logoutLabel: 'Log out from Facebook',
-  verbose: false,
-  onWillMount: () => { },
   onLoginEvent: () => { },
   onLogoutEvent: () => { },
   onClick: () => { },

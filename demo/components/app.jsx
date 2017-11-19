@@ -20,17 +20,25 @@ class App extends Component {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.getUserInformation = this.getUserInformation.bind(this);
+    this.sdkLoaded = this.sdkLoaded.bind(this);
     this.styles = {};
   }
 
   login(response) {
     this.props.getLoginStatus(response.status);
   }
+  sdkLoaded(payload) {
+    this.props.getLoginStatus(payload);
+  }
   logout(response) {
     this.props.getLoginStatus(response.status);
     this.props.getUserInformation(null);
   }
   getUserInformation() {
+    console.log({
+      isConnected: this.props.facebookLogin.isConnected,
+      userInformation: this.props.userInformation
+    });
     if (this.props.facebookLogin.isConnected && !this.props.userInformation) {
       FB.api('/me', 'GET', { fields: 'id,name,email' },
         userInformation => {
@@ -45,9 +53,8 @@ class App extends Component {
     return (
       <div style={styles.container}>
         <FacebookReduxLogin
-          appId='326022817735322'
-          verbose={false}
-          onWillMount={this.login}
+          appId="326022817735322"
+          sdkLoaded={this.sdkLoaded}
           onLoginEvent={this.login}
           onLogoutEvent={this.logout}
           onClick={() => this.props.startFetching()}

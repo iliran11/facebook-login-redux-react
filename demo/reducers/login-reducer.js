@@ -1,7 +1,8 @@
 export default function (state = { isConnected: null, isWorking: null }, action) {
+  console.log('action', action.payload)
   switch (action.type) {
     case 'loginResponse':
-      if (action.payload === 'connected') {
+      if (action.payload.isConnected === true) {
         return ({
           isConnected: true,
           isWorking: false
