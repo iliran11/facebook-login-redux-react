@@ -35,10 +35,6 @@ class App extends Component {
     this.props.getUserInformation(null);
   }
   getUserInformation() {
-    console.log({
-      isConnected: this.props.facebookLogin.isConnected,
-      userInformation: this.props.userInformation
-    });
     if (this.props.facebookLogin.isConnected && !this.props.userInformation) {
       FB.api('/me', 'GET', { fields: 'id,name,email' },
         userInformation => {

@@ -47,6 +47,19 @@ Props
 | onLoginEvent 	| function 	|  	|  	|
 | onLogoutEvent 	| function 	|  	|  	|
 
+Style Props
+------
+Style Props Accepts any valid String values for those css Properties: 
+
+| Prop Name       | Default Value (String)            |
+|-----------------|-----------------------------------|
+| width           | None                              |
+|  padding        | 0 15px 0px 46px                   |
+| fontSize        | 16px                              |
+| backgroundImage | linear-gradient(#4C69BA, #3B55A0) |
+| color           | #FFF                              |
+| lineHeight      | 34px                              |
+
 
 
 Example:
@@ -66,43 +79,6 @@ Development
 
 - running the demo on dev server `npm start`. this will run the demo app, which is configured for redux, 
 
-Styles
-======
-
-Styles are fully mergable and extensible.
-they are passed as an object with 2 keys, 'loginBtn' and 'fbIcon' and they will be merged with the default styles object (will soon add support for the spinner styling)
-```js
-  styles: {
-    loginBtn: {
-      position: 'relative',
-      padding: '0 15px 0px 46px',
-      border: 'none',
-      lineHeight: '34px',
-      fontSize: '16px',
-      color: '#FFF',
-      backgroundImage: 'linear-gradient(#4C69BA, #3B55A0)'
-    },
-    fbIcon: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: 34,
-      height: '100%',
-      background: "url(" + Icon + ") 6px 6px no-repeat"
-    },
-    spinner: {
-      boxSizing: 'border-box',
-      width: 30,
-      height: '90%',
-      borderRadius: '50%',
-      border: '5px solid #f3f3f3',
-      borderTop: '5px solid #3498db',
-      animation: 'spin 2s linear infinite',
-      position: 'absolute',
-      left: 5
-    }
-  }
-```
 
 Tests
 ======
