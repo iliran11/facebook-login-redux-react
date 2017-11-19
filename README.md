@@ -1,25 +1,15 @@
-Contribute
-======
-I welcome any kind of contributions/requests/questions/general feedback.
-possible methods to contact me:
-1. [open an Issue](https://github.com/iliran11/facebook-login-react/issues/new)
-2. send me a mail: iliran11@gmail.com
-3. [contact me on facebook](https://www.facebook.com/Liran.Co.1984)
-
 [![npm](https://img.shields.io/npm/dm/facebook-login-redux-react.svg)](https://www.npmjs.com/package/facebook-login-redux-react)
+[![Github file size](https://img.shields.io/github/size/iliran11/facebook-login-redux-react/build/index.js.svg?style=flat-square)](https://github.com/iliran11/facebook-login-redux-react/blob/master/build/index.js)
 
-Default Styling Of The Button
-======
+# Change Log - Version 1.0.0
 
-![button preview](http://i.imgur.com/4UHZAtX.png "")
+* Reduced library size from 38k to 4.7kb!
+* Styles can now be modified through props.
+* Minor Changes to the props API.
 
 Example: Integrating  Button with Redux
 ======
-source code can be found in [demo](https://github.com/iliran11/facebook-login-react/tree/master/demo) folder.
-the actual component is just the button (:
-![app preview](http://i.imgur.com/MzaCdgO.gif "")
-
-
+source code can be found in [demo
 
 Installation
 ======
@@ -79,8 +69,13 @@ Development
 
 - running the demo on dev server `npm start`. this will run the demo app, which is configured for redux, 
 
+Contribute
+======
 
+I welcome any kind of contributions/requests/questions/general feedback.
+Please Open an Issue Or a pull request.
 Tests
+
 ======
 
 tests will be added hopefully soon.

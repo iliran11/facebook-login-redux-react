@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import FacebookReduxLogin from '../../src/facebook-login.jsx';
+// import FacebookReduxLogin from '../../build/index';
 import { getLoginStatus, startFetching, getUserInformation } from '../actions.js';
 import Well from './well.jsx';
 import ListItem from './listItem.jsx';

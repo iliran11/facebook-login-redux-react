@@ -1,4 +1,4 @@
-/* global FB,document,fjs */
+/* global FB */
 
 import React, { Component } from 'react';
 import { loadFbSdk, getLoginStatus, fbLogin, fbLogout } from './helpers/helpers.js';
@@ -20,7 +20,7 @@ export default class FacebookReduxLogin extends Component {
     loadFbSdk(this.props.appId, this.props.version)
       .then(() => getLoginStatus())
       .then(response => {
-        const isConnected = response.status === 'connected' ? true : false
+        const isConnected = response.status === 'connected';
         if (isConnected) {
           this.setState({ isConnected: true });
         }
@@ -33,7 +33,7 @@ export default class FacebookReduxLogin extends Component {
       isConnected: this.state.isConnected,
       loginLabel: this.props.loginLabel,
       logoutLabel: this.props.logoutLabel
-    }
+    };
   }
   styles(options) {
     const {
@@ -91,7 +91,7 @@ export default class FacebookReduxLogin extends Component {
     return (
       <button onClick={this.buttonClicked} style={this.styles(this.props)}>
         {this.props.children}
-        <ButtonText {...this.buttonText() } />
+        <ButtonText {...this.buttonText()} />
       </button>
     );
   }
@@ -102,8 +102,8 @@ const ButtonText = ({ isConnected, logoutLabel, loginLabel }) => {
     <span>
       {isConnected ? logoutLabel : loginLabel}
     </span>
-  )
-}
+  );
+};
 FacebookReduxLogin.defaultProps = {
   loginLabel: 'Log In To Facebook',
   version: 'v2.9',
