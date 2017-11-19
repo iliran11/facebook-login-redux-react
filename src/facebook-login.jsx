@@ -3,19 +3,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { loadFbSdk, getLoginStatus, fbLogin, fbLogout } from './helpers/helpers.js';
-import Spinner from './spinner.jsx';
-import defaultStyles from './style/styles.js';
 
 export default class FacebookReduxLogin extends Component {
   constructor(props) {
     super(props);
     this.buttonClicked = this.buttonClicked.bind(this);
-    this.showSpinner = this.showSpinner.bind(this);
+    this.buttonText = this.buttonText.bind(this);
     this.state = {
       isWorking: false,
       isConnected: false
     };
-    this.styles = {};
   }
   componentWillMount() {
     this.setState({
@@ -34,15 +31,24 @@ export default class FacebookReduxLogin extends Component {
         this.props.onWillMount(response);
       });
   }
-
-  getButtonText() {
-    switch (this.state.isConnected) {
-      case true:
-        return this.props.logoutLabel;
-      case false:
-        return this.props.loginLabel;
-      default:
-        return 'this is default';
+  buttonText() {
+    return {
+      isConnected: this.state.isConnected,
+      loginLabel: this.props.loginLabel,
+      logoutLabel: this.props.logoutLabel
+    }
+  }
+  styles() {
+    return   {
+      display: 'flex',
+      alignItems:'center',
+      position: 'relative',
+      padding: '0 15px 0px 46px',
+      border: 'none',
+      lineHeight: '34px',
+      fontSize: '16px',
+      color: '#FFF',
+      backgroundImage: 'linear-gradient(#4C69BA, #3B55A0)'
     }
   }
   buttonClicked() {
@@ -51,13 +57,6 @@ export default class FacebookReduxLogin extends Component {
       this.logout();
     } else {
       this.login();
-    }
-  }
-  showSpinner() {
-    if (this.state.isWorking) {
-      return <Spinner style={this.styles.spinner} />;
-    } else {
-      return <div style={this.styles.fbIcon} />;
     }
   }
   login() {
@@ -85,21 +84,21 @@ export default class FacebookReduxLogin extends Component {
     );
   }
   render() {
-    if (this.styles) {
-      this.styles.loginBtn = Object.assign({}, defaultStyles.loginBtn, this.styles.loginBtn);
-      this.styles.fbIcon = Object.assign({}, defaultStyles.fbIcon, this.styles.fbIcon);
-      this.styles.spinner = Object.assign({}, defaultStyles.spinner, this.styles.spinner);
-    }
     return (
-      <div>
-        {this.props.loginOptions.color}
-        <button onClick={this.buttonClicked} style={this.styles.loginBtn}>
-          {this.showSpinner()}
-          {this.getButtonText()}
-        </button>
-      </div>
+      <button onClick={this.buttonClicked} style={this.styles()}>
+        <ButtonText {...this.buttonText() } />
+        {this.props.children}
+      </button>
     );
   }
+}
+
+const ButtonText = ({ isConnected, logoutLabel, loginLabel }) => {
+  return (
+    <span>
+      {isConnected ? loginLabel : logoutLabel}
+    </span>
+  )
 }
 
 FacebookReduxLogin.propTypes = {

@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import FacebookReduxLogin from '../../src/facebook-login.jsx';
-import FacebookReduxLogin from '../../build/index.js';
+import FacebookReduxLogin from '../../src/facebook-login.jsx';
+// import FacebookReduxLogin from '../../build/index.js';
 import { getLoginStatus, startFetching, getUserInformation } from '../actions.js';
 import Well from './well.jsx';
 import ListItem from './listItem.jsx';
@@ -50,7 +50,9 @@ class App extends Component {
           onLoginEvent={this.login}
           onLogoutEvent={this.logout}
           onClick={() => this.props.startFetching()}
-        />
+        >
+          <Spinner />
+        </FacebookReduxLogin>
         <Well isDisplayed={this.props.userInformation}>
           <ListItem text={id} svg={Id} />
           <ListItem text={name} svg={Name} />
@@ -72,7 +74,20 @@ function mapStateToProps(state) {
     facebookLogin: state.facebookLogin
   };
 }
-
+function Spinner(props) {
+  const style= {
+    boxSizing: 'border-box',
+    width: 30,
+    height: '90%',
+    borderRadius: '50%',
+    border: '5px solid #f3f3f3',
+    borderTop: '5px solid #3498db',
+    animation: 'spin 2s linear infinite',
+    position: 'absolute',
+    left: 5
+  };
+  return <div style={style} />;
+}
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 const styles = {
