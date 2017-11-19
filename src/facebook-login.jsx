@@ -102,5 +102,17 @@ const ButtonText = ({ isConnected, logoutLabel, loginLabel }) => {
     <span>
       {isConnected ? logoutLabel : loginLabel}
     </span>
-  );
+  )
+}
+FacebookReduxLogin.defaultProps = {
+  loginLabel: 'Log In To Facebook',
+  version: 'v2.9',
+  loginOptions: {
+    scope: 'email'
+  },
+  logoutLabel: 'Log out from Facebook',
+  onLoginEvent: () => { },
+  onLogoutEvent: () => { },
+  onClick: () => { },
+  styles: {}
 };
