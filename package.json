@@ -12,6 +12,7 @@
   "author": "liran",
   "license": "ISC",
   "devDependencies": {
+    "axios": "0.16.1",
     "babel-cli": "6.24.1",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
@@ -26,17 +27,17 @@
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
     "node-sass": "4.5.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "2.2.0",
     "sass-loader": "6.0.3",
     "style-loader": "0.16.1",
     "url-loader": "0.5.8",
     "webpack": "2.4.1",
-    "webpack-dev-server": "^2.4.5",
-    "redux-thunk": "2.2.0",
-    "redux": "^3.6.0",
-    "react-redux": "^5.0.4",
-    "axios": "0.16.1",
-    "react-dom": "^15.5.4",
-    "react": "^15.5.4"
+    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "prop-types": "^15.5.8"

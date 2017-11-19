@@ -1,5 +1,7 @@
 var path = require('path');
 var webpack = require('webpack')
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 module.exports = {
   entry: {
@@ -59,4 +61,7 @@ module.exports = {
     ],
 
   },
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ]
 };
