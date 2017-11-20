@@ -9,7 +9,7 @@
 
 Example: Integrating  Button with Redux
 ======
-source code can be found in [demo
+source code can be found in [demo](https://github.com/iliran11/facebook-login-redux-react/tree/master/demo)
 
 Installation
 ======
