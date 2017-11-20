@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/dm/facebook-login-redux-react.svg)](https://www.npmjs.com/package/facebook-login-redux-react)
 [![Github file size](https://img.shields.io/github/size/iliran11/facebook-login-redux-react/build/index.js.svg?style=flat-square)](https://github.com/iliran11/facebook-login-redux-react/blob/master/build/index.js)
 
-# Change Log - Version 1.0.0
+# Change Log - Version 1.0.0 🎂
 
 * Reduced library size from 38k to 4.7kb!
 * Styles can now be modified through props.
